@@ -42,11 +42,11 @@ using (AssemblyLoader assemblyLoader = new AssemblyLoader())
     configuration.Severities.ParameterNameChanged = Severity.Warning;
     configuration.Severities.AssemblyNameChanged = Severity.Hint;
     // easy setup of the ApiChecker using the builder pattern
-    ApiChecker.CreateInstance(refAssembly, devAssembly)
+    ApiComparer.CreateInstance(refAssembly, devAssembly)
               // configure the logging and the comparer 
               .WithComparerConfiguration(configuration)
-              .WithDetailLogging(s => WriteLine(s))
-              .WithInfoLogging(s => WriteLine(s))
+              .WithDetailLogging(s => Console.WriteLine(s))
+              .WithInfoLogging(s => Console.WriteLine(s))
               // write report to desired streams
               .WithHtmlReport(new FileStream("report.html", FileMode.Create))
               .WithXmlReport(new FileStream("report.xml", FileMode.Create))
